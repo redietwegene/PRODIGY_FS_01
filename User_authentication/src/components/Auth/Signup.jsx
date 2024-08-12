@@ -33,7 +33,7 @@ const Signup = () => {
           setEmail('');
           setRole('user')
           setPassword('');
-          navigateTo("/login");
+          navigateTo("/");
           }
          
         } catch (error) {
@@ -89,7 +89,7 @@ const Signup = () => {
                                 </div>
                                 <button
                                     type="button"
-                                    className="absolute top-1/2 transform -translate-y-1/2 right-3 text-gray-500"
+                                    className="absolute top-3 transform - right-3 text-gray-500"
                                     onClick={togglePasswordVisibility}
                                 >
                                     {showPassword ? <MdVisibility /> : <MdVisibilityOff />}
@@ -104,7 +104,7 @@ const Signup = () => {
                 <div className="flex justify-center">
                     <p>Already have an account?</p>
                     <h5 className="text-green-800 font-medium">
-                        <Link to="/login">Login</Link>
+                        <Link to="/">Login</Link>
                     </h5>
                 </div>
             </div>
