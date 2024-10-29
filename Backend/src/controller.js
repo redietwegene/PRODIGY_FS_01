@@ -12,7 +12,8 @@ const signup = async (req, res) => {
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword,
-      roles: req.body.roles
+    
+     
     });
 
     await auth.save();
@@ -64,8 +65,8 @@ const login = async (req, res) => {
       user: {
         id: auth._id,
         username: auth.username,
-        roles: auth.roles,
-        // Include any other necessary user data
+        // roles: auth.roles,
+      
       },
     });
   } catch (error) {

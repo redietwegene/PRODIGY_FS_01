@@ -2,17 +2,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
-import useAuth from '../hooks/useAuth';
-import axiosInstance from '../api'; // Import axiosInstance
 
-const SIGNUP_URL = "/signup"; // Ensure this is the correct endpoint
+import axiosInstance from "../api"; 
+
+const SIGNUP_URL = "/signup"; 
 
 const Signup = () => {
     const navigateTo = useNavigate();
-    const { setAuth } = useAuth();
+ 
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
-    const [roles,setRole]=useState("user")
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
@@ -24,14 +23,13 @@ const Signup = () => {
         e.preventDefault();
         try {
           const response = await axiosInstance.post(SIGNUP_URL, // Use axiosInstance
-              { username, email, password,roles },
+              { username, email, password },
               
           );
           if(response.status==200){
-          setAuth({username,email,password,roles})
+          
           setUsername('');
           setEmail('');
-          setRole('user')
           setPassword('');
           navigateTo("/");
           }
@@ -75,18 +73,7 @@ const Signup = () => {
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
-                                <div>
-                                <label className="text-gray-600 font-medium text-sm block mb-3">Role</label>
-                        <select
-                            name="role"
-                            className="border w-full p-2 mb-3 rounded-lg focus:outline-none focus:border-lime-600"
-                            value={roles}
-                            onChange={(e) => setRole(e.target.value)}
-                        >
-                            <option value="user">User</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                                </div>
+                          
                                 <button
                                     type="button"
                                     className="absolute top-3 transform - right-3 text-gray-500"

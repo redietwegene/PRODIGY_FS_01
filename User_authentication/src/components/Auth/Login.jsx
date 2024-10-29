@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
 import axiosInstance from '../api';
-
 const LOGIN_URL = "/login";
 
 function Login() {
   const navigate = useNavigate();
-  const { setAuth } = useAuth();
+
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -24,11 +22,12 @@ function Login() {
       const response = await axiosInstance.post(LOGIN_URL, { username, password });
       if (response.status === 200) {
         const { accessToken, user } = response.data;
-        setAuth({ username, role: user.roles,accessToken });
+       localStorage.setItem("accessToken",accessToken)
         setUsername('');
         setPassword('');
         console.log(accessToken);
-        navigate(user.roles === 'admin' ? '/admin' : '/user');
+        navigate('/privateRoute')
+    
       } else {
         // Handle non-200 responses if needed
       }

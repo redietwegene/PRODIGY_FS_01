@@ -1,23 +1,23 @@
-import { useLocation,Navigate,Outlet, useNavigate } from "react-router-dom";
-import useAuth from "../components/hooks/useAuth";
+// import { useLocation,Navigate,Outlet, useNavigate } from "react-router-dom";
+// import useAuth from "../components/hooks/useAuth";
 
 
 
-const privateRoute =({allowedRoles})=>{
+// const privateRoute =({allowedRoles})=>{
     
-    const {auth} =useAuth();
-    const location=useLocation();
-    return(
-        auth?.roles?.find(role => allowedRoles?.includes(role))
-        ?<Outlet/>
-       : auth?.user
-             ?<Navigate to="/unauthorized" state={{ from: location }} replace />
-            :<Navigate to ="/login" state={{from:location}} replace/>
+//     const {auth} =useAuth();
+//     const location=useLocation();
+//     return(
+//         auth?.roles?.find(role => allowedRoles?.includes(role))
+//         ?<Outlet/>
+//        : auth?.user
+//              ?<Navigate to="/unauthorized" state={{ from: location }} replace />
+//             :<Navigate to ="/login" state={{from:location}} replace/>
 
-    )
+//     )
     
-}
-export default privateRoute;
+// }
+// export default privateRoute;
 
 
 
@@ -63,3 +63,24 @@ export default privateRoute;
 // };
 
 // export { AdminRoute, UserRoute };
+import React from 'react'
+
+const PrivateRoute = () => {
+    const token = localStorage.getItem("accessToken");
+  return (
+      <div>
+          {token ? (
+              <p>
+                  welcome
+                  
+              </p>)
+              : (
+            
+                  <p>please log in to view </p>
+              )}
+      
+    </div>
+  )
+}
+
+export default PrivateRoute
